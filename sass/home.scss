@@ -3,15 +3,8 @@
 
 
 * {
-    @include spacing(0, 0);
+    background-color: red;
 }
 body {
-    @include body(300vh);
-    // --------responsive-------
-    @include responsiveSize(big) {
-        height: 170vh;
-    }
-    @include responsiveSize(small) {
-        // height:100vh;
-    }
+    background-color: red($color: #000000);
 }
