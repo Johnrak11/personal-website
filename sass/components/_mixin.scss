@@ -1,0 +1,105 @@
+@use 'sass:map';
+$breakPoints: (
+    verysmall:400px,
+    small: 670px,
+    medium: 760px,
+    big:900px,
+);
+@import'verible';
+@mixin flexSize($size) {
+    flex: $size;
+}
+
+@mixin flexBasis($size) {
+    flex-basis: $size;
+
+}
+
+@mixin spacing($p, $m) {
+    padding: $p;
+    margin: $m;
+
+}
+
+@mixin body ($h) {
+    font-family: $font-style;
+    height: $h;
+    display: flex;
+    flex-direction: column;
+    background-color: $body_background;
+    @include responsiveSize(big) {
+        height: 170vh;
+    }
+    @content;
+}
+
+@mixin flexProp ($f,$r-c){
+    display: $f;
+    flex-direction:$r-c ;
+    @content;
+}
+@mixin flex-center($jc,$ac) {
+    justify-content:$jc;
+    align-items: $ac;
+    @content;
+}
+@mixin hover-color {
+    background-color: $btn_main;
+    cursor: pointer;
+    color: white;
+}
+@mixin hover-zoom{
+    transform: scale(1.1);
+    transition: .5s;
+    cursor: pointer;
+}
+@mixin box-shadow{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+// @media query with difference screen
+@mixin responsiveSize($key) {
+    $size: map.get($breakPoints, $key);
+    @media(max-width:$size) {
+        @content;
+    }
+}
+
+@mixin comapny-logo ($f) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: $f;
+    @content;
+}
+@mixin select ($p,$w){
+    border: none;
+    outline:none;
+    border-radius: $border-radius;
+    padding: $p;
+    font-size: $font-size-meduim;
+    width: $w;
+}
+@mixin more-position{
+    // width: 30%;
+    margin: auto;
+    margin-bottom: 10px;
+    @include flexProp(flex,row){
+        justify-content: center;
+        align-items: center;
+    }
+    button {
+        @include button;
+        background:$btn_main;
+        @include flexProp(flex,row){
+            justify-content: center;
+            align-items: center;
+            color: $font-color-w;
+        }
+    }
+
+}
+@mixin title {
+    h3{
+        font-size: $font-title;
+    }
+}
